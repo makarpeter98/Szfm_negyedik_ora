@@ -28,6 +28,13 @@ public class ShoppingListController {
 
         //rendezés
 
+        App.ShoppingList.sort(String::compareToIgnoreCase);
+
+        for (String element : App.ShoppingList)
+        {
+            ShoppingListView.getItems().add(element);
+        }
+
         ShoppingListView.refresh();
 
     }
