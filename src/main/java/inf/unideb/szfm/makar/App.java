@@ -7,17 +7,27 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
 
+    public static ArrayList<String> ShoppingList;
+
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+
+        ShoppingList = new ArrayList<String>();
+        ShoppingList.add("Alma");
+        ShoppingList.add("Banánt");
+        ShoppingList.add("Skoda");
+        ShoppingList.add("");
+
+        scene = new Scene(loadFXML("ShoppingListView"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
