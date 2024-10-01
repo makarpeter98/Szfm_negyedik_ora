@@ -24,6 +24,12 @@ public class ShoppingListController {
     @FXML
     public void onOrderButtonClick(ActionEvent actionEvent) {
         System.out.println("Elemek rendezése");
+        ShoppingListView.getItems().clear();
+
+        //rendezés
+
+        ShoppingListView.refresh();
+
     }
 
     public void initialize()
