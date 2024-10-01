@@ -12,8 +12,15 @@ public class ShoppingListAddElementController {
 
     @FXML
     public void onAddElementButtonClick(ActionEvent actionEvent) {
+        String inputElement = AddElementTextField.getText();
 
+        if(inputElement != null && inputElement.length() > 0)
+        {
+            App.ShoppingList.add(inputElement);
+        }
+        AddElementTextField.setText("");
     }
+
 
     @FXML
     public void onShowListButtonClick(ActionEvent actionEvent) throws IOException {
