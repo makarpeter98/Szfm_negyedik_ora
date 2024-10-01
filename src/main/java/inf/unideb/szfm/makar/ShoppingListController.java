@@ -13,11 +13,12 @@ public class ShoppingListController {
 
     @FXML
     public void onAddElementButtonClick(ActionEvent actionEvent) throws IOException {
-        App.setRoot("ShoppingListAddELementView");
+        App.setRoot("ShoppingListAddElementView");
     }
 
     @FXML
-    public void onDeleteElementButtonClick(ActionEvent actionEvent) {
+    public void onDeleteElementButtonClick(ActionEvent actionEvent) throws IOException {
+        App.setRoot("ShoppingListRemoveElementView");
     }
 
     @FXML
@@ -33,7 +34,7 @@ public class ShoppingListController {
 
         for(String element : App.ShoppingList)
         {
-            if(element != null)
+            if(element != null | element.length() > 0)
             {
                 ShoppingListView.getItems().add(element);
             }
