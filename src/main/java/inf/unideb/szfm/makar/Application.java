@@ -18,14 +18,60 @@ public class Application {
     * */
 
     public static void main(String[] args) throws Exception {
-		startDatabase();
+        startDatabase();
+
         System.out.println("Open your browser and navigate to http://localhost:8082/");
         System.out.println("JDBC URL: jdbc:h2:mem:my_database");
         System.out.println("User Name: sa");
         System.out.println("Password: ");
+
+        try(AnimalDAO aDAO = new JpaAnimalDAO())
+        {
+            Animal dragon = new Animal();
+            dragon.setName("Drogon");
+            dragon.setAge(7);
+            dragon.setGender(GenderEnum.MALE);
+            aDAO.saveAnimal(dragon);
+
+            dragon = new Animal();
+            dragon.setName("Nagy János");
+            dragon.setAge(7);
+            dragon.setGender(GenderEnum.BANANA);
+            aDAO.saveAnimal(dragon);
+
+            /*Animal dragon_2 = new Animal();
+            dragon_2.setName("Rhaegar");
+            dragon_2.setAge(7);
+            dragon_2.setGender(GenderEnum.MALE);
+            aDAO.saveAnimal(dragon_2);*/
+
+            System.out.println("Drogon és Nagy Janos letrehozva Enter....");
+            (new Scanner(System.in)).nextLine();
+
+            List<Animal> aList = aDAO.getAnimals();
+
+            for(Animal a : aList)
+            {
+                a.setAge(a.getAge()+1);
+                aDAO.saveAnimal(a);
+            }
+
+            System.out.println("Sarkanyok eletkora novelve Enter....");
+            (new Scanner(System.in)).nextLine();
+
+            Zoo zoo = new Zoo();
+            zoo.setName("Dragons KLÁN");
+            zoo.getAnimals().addAll(aList);
+            aDAO.saveZoo(zoo);
+
+            System.out.println("Allatkert elmentve Enter....");
+            (new Scanner(System.in)).nextLine();
+
+        }
     }
 
     private static void startDatabase() throws SQLException {
         new Server().runTool("-tcp", "-web", "-ifNotExists");
     }
+
 }
