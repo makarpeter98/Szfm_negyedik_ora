@@ -10,6 +10,13 @@ import org.h2.tools.Server;
 
 public class Application {
 
+    /*
+    *
+    * 2026.10.05
+    * Negyedik ora
+    *
+    * */
+
     public static void main(String[] args) throws Exception {
 		startDatabase();
         System.out.println("Open your browser and navigate to http://localhost:8082/");
